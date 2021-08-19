@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import os
 
 from setuptools import find_packages, setup
@@ -27,7 +29,7 @@ with open("test_requirements.txt") as f_tests:
     required_for_tests = f_tests.read().splitlines()
 
 setup(
-    name="cloudshell-template",
+    name="cloudshell-networking-exaware",
     url="http://www.qualisystems.com/",
     author="QualiSystems",
     author_email="info@qualisystems.com",
@@ -39,6 +41,6 @@ setup(
     ),
     version=version_from_file,
     package_data={"": ["*.txt"]},
-    description="<your package description>",
+    description="QualiSystems networking Exaware specific Package",
     include_package_data=True,
 )
