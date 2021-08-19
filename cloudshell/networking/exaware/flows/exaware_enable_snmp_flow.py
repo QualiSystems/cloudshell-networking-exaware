@@ -1,7 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from cloudshell.snmp.snmp_parameters import SNMPWriteParameters
-from cloudshell.networking.exaware.helpers.exceptions import ExawareSNMPException
+from cloudshell.snmp.snmp_parameters import SNMPWriteParameters  # noqa: F401
+
+from cloudshell.networking.exaware.helpers.exceptions import (  # noqa: F401
+    ExawareSNMPException,
+)
 
 
 class ExawareEnableSnmpFlow(object):

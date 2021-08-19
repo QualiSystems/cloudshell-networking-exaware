@@ -10,8 +10,8 @@ from cloudshell.cli.session.ssh_session import SSHSession
 from cloudshell.cli.session.telnet_session import TelnetSession
 
 from cloudshell.networking.exaware.cli.exaware_command_modes import (
-    OperationCommandMode,
     ConfigurationCommandMode,
+    OperationCommandMode,
     OSShellCommandMode,
 )
 
@@ -58,4 +58,6 @@ class ExawareCliHandler(AbstractModeConfigurator):
             session=session, requested_command_mode=self.enable_mode, logger=logger
         )
         cli_service.send_command("session screen-length 0", OperationCommandMode.PROMPT)
-        cli_service.send_command("session screen-width 300", OperationCommandMode.PROMPT)
+        cli_service.send_command(
+            "session screen-width 300", OperationCommandMode.PROMPT
+        )

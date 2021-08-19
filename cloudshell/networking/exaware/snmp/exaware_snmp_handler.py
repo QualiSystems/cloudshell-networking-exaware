@@ -5,8 +5,12 @@ from cloudshell.snmp.snmp_configurator import (
     EnableDisableSnmpFlowInterface,
 )
 
-from cloudshell.networking.exaware.flows.exaware_disable_snmp_flow import ExawareDisableSnmpFlow
-from cloudshell.networking.exaware.flows.exaware_enable_snmp_flow import ExawareEnableSnmpFlow
+from cloudshell.networking.exaware.flows.exaware_disable_snmp_flow import (
+    ExawareDisableSnmpFlow,
+)
+from cloudshell.networking.exaware.flows.exaware_enable_snmp_flow import (
+    ExawareEnableSnmpFlow,
+)
 
 
 class ExawareEnableDisableSnmpFlow(EnableDisableSnmpFlowInterface):
@@ -32,7 +36,9 @@ class ExawareEnableDisableSnmpFlow(EnableDisableSnmpFlowInterface):
 class ExawareSnmpHandler(EnableDisableSnmpConfigurator):
     def __init__(self, resource_config, logger, cli_handler):
         self.cli_handler = cli_handler
-        enable_disable_snmp_flow = ExawareEnableDisableSnmpFlow(self.cli_handler, logger)
+        enable_disable_snmp_flow = ExawareEnableDisableSnmpFlow(
+            self.cli_handler, logger
+        )
         super(ExawareSnmpHandler, self).__init__(
             enable_disable_snmp_flow, resource_config, logger
         )

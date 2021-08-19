@@ -53,8 +53,5 @@ class OSShellCommandMode(CommandMode):
 
 
 CommandMode.RELATIONS_DICT = {
-    OperationCommandMode: {
-        ConfigurationCommandMode: {},
-        OSShellCommandMode: {}
-    }
+    OperationCommandMode: {ConfigurationCommandMode: {}, OSShellCommandMode: {}}
 }
