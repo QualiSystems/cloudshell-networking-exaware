@@ -22,7 +22,7 @@ class OperationCommandMode(CommandMode):
 
 class ConfigurationCommandMode(CommandMode):
     PROMPT = r"\S+\(config(\S)*\)#"
-    ENTER_COMMAND = "configure"
+    ENTER_COMMAND = "configure private"
     EXIT_COMMAND = "exit"
 
     def __init__(self, resource_config):
