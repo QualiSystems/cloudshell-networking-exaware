@@ -35,25 +35,27 @@ class SystemActions(object):
 
     def tftp_get_file(self, hostname, port, filename):
         """Download file from remote server to device local storage."""
-        CommandTemplateExecutor(
+        output = CommandTemplateExecutor(
             self._cli_service, system.TFTP_GET_FILE
         ).execute_command(
             hostname=hostname,
             port=port,
             filename=filename,
         )
+        if "File not found" in output or "Transfer timed out" in output:
+            raise ExawareBaseException(f"Error during coping file: {output}")
 
     def tftp_put_file(self, hostname, port, filename):
         """Upload file to remote server from device local storage."""
-        CommandTemplateExecutor(
+        output = CommandTemplateExecutor(
             self._cli_service, system.TFTP_PUT_FILE
         ).execute_command(
             hostname=hostname,
             port=port,
             filename=filename,
         )
-
-        # Transfer timed out.
+        if "File not found" in output or "Transfer timed out" in output:
+            raise ExawareBaseException(f"Error during coping file: {output}")
 
     def ftp_get_file(self, hostname, port, username, password, path, filename):
         """Download file from remote server to device local storage."""
@@ -67,7 +69,7 @@ class SystemActions(object):
             path=os.path.join(path, filename),
             filename=filename,
         )
-        if "curl" in output:
+        if "curl:" in output:
             err_msg = output.split("curl")[-1]
             raise ExawareBaseException(f"Error during coping file: {err_msg}")
 
@@ -83,7 +85,7 @@ class SystemActions(object):
             path=path,
             filename=filename,
         )
-        if "curl" in output:
+        if "curl:" in output:
             err_msg = output.split("curl")[-1]
             raise ExawareBaseException(f"Error during coping file: {err_msg}")
 
@@ -114,7 +116,7 @@ class SystemActions(object):
             path=os.path.join(path, filename),
             filename=filename,
         )
-        if "scp" in output:
+        if "scp:" in output:
             err_msg = output.split("scp")[-1]
             raise ExawareBaseException(f"Error during coping file: {err_msg}")
 
@@ -145,6 +147,6 @@ class SystemActions(object):
             path=path,
             filename=filename,
         )
-        if "scp" in output:
+        if "scp:" in output:
             err_msg = output.split("scp")[-1]
             raise ExawareBaseException(f"Error during coping file: {err_msg}")

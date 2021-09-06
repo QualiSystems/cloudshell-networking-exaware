@@ -164,6 +164,8 @@ class ExawareConfigurationFlow(AbstractConfigurationFlow):
                         filename=filename,
                     )
                 elif scheme == "scp":
+                    if not path.endswith("/"):
+                        path += "/"
                     system_action.scp_get_file(
                         hostname=hostname,
                         port=port,
